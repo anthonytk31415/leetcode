@@ -1,0 +1,36 @@
+
+
+from bisect import bisect_left
+from math import inf
+
+# n log n algorithm
+
+# keep a sorted array of temperatures where arr[i] = (temp, index in original)
+
+# you'll iterate on x (from right to left of the orignal array)
+
+# for each x, find the index where you will insert the new element in the array; 
+
+
+def dailyTemperatures(temp):
+    res = [None] * len(temp)
+    last = len(temp) - 1
+    cur_max = temp[last]
+    sort_temp = [(temp[last], last)]
+    res[last] = 0 
+
+    for i in range(len(temp) - 2, -1): 
+        # if temp 
+        if temp[i] > cur_max: 
+            res[i] = 0
+            sort_temp.append((temp[i], i))
+            cur_max = temp[i]
+        else: 
+            index = bisect_left(sort_temp, temp[i], key = lambda x: x[0])
+            sort_temp = sort_temp[:index] + [(temp[i], i)] + sort_temp[index:]
+            z = sort_temp[index + 1][1]
+            res[i] = z - i
+    return res
+
+temp = [73,74,75,71,69,72,76,73]
+print( dailyTemperatures(temp))
