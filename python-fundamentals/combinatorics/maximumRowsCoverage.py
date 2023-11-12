@@ -1,19 +1,18 @@
 from itertools import combinations
 
-
 arr = [x for x  in range(5)]
-
 # 5 choose 3 -> 10 combinations
 res = list(combinations(arr, 3))
 print(len(res))
 
 
+# Set Functions
 a = set([1,2,3])
 b = set([2])
 c = set([4])
 
-print(a - b)
-print(b | c) # union 
+print(a - b) # set A - B >> {1,3}
+print(b | c) # union B C >> {2,4}
 
 def maximumRows(matrix, numSelect):
     cols = len(matrix[0])
@@ -25,10 +24,10 @@ def maximumRows(matrix, numSelect):
     # all rows minus  col from rowInCol for each remaining col will give you total number of rows that have coverage
 
     maxCoverage = 0
-    print(colCombos)
+
     for combo in colCombos: 
         colsLeft = allCols - set(combo)
-        print(colsLeft)
+
         allRows = set([x for x in range(len(matrix))])  
         for col in colsLeft: 
             if col not in rowsInCol: 

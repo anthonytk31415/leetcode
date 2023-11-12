@@ -8,7 +8,6 @@ from math import inf
 
 def distributeCookies(cookies, k):
     # path[i] = the int of where the cookie belongs to which person, person 0, ... k - 1 = k total people
-
     minOverallMax = [inf]
 
     def dfs(j, path):
