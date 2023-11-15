@@ -1,4 +1,7 @@
 from collections import Counter
+
+# this is currently O(n^2) Time but we could probably optimize it
+
 def countPalindromicSubsequence(s):
 
     def countPalindromes(letter):
@@ -23,8 +26,6 @@ def countPalindromicSubsequence(s):
     for letter in countLetters.keys():
         if countLetters[letter] > 1: 
             res += countPalindromes(letter)
-
-
     return res
 
 s = "bbcbaba"

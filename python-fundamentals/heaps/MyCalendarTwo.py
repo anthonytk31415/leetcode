@@ -7,6 +7,33 @@ from math import inf
 # lets do this brute force: N^2
 
 
+# key for interval: 
+# for any two intervals [start, end], [s, e]:
+#     if max(start, s) < min(end, e): , then you have the overlap. 
+
+# The overlapped interval is [max(start, s), min(end, e)]
+
+class MyCalendarTwo:
+
+    def __init__(self):
+        self.entries = [] # entries sorted by start time
+        self.overlaps = []
+
+
+    def book(self, start, end):
+        # check if you hit any overlaps; if so, return False
+
+        for s, e in self.overlaps: 
+            if max(start, s) < min(end, e): return False
+
+        # you're good; Now build any overlaps
+        for s, e in entries: 
+            if max(start, s) < min(end, e): 
+                overlap = [max(start, s), min(end, e)]
+                self.overlaps.append(overlap)
+        # insert to entries
+        self.entries.append([start, end])
+        return True
 
 
 # all crap below
