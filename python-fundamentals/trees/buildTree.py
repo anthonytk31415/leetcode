@@ -6,7 +6,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def buildTree(preorder, inorder):
+def buildTree1(preorder, inorder):
     head = TreeNode(preorder[0])
     
     idxLookup = {}
@@ -29,6 +29,19 @@ def buildTree(preorder, inorder):
                     node.left = TreeNode(num)
                     break 
     return head
+
+# lets build this recursively
+# def buildTree(preorder, inorder):
+#     head = preorder[0]
+
+#     preOrderLeft = 
+#     preOrderRight = 
+
+
+#     return head
+
+
+
 
 preorder = [3,9,20,15,7]
 inorder = [9,3,15,20,7]
@@ -54,6 +67,9 @@ def preorderPrint(node):
         if cur.right: 
             queue.append(cur.right)
     return res
+
+def postorder
+
 
 print(inorderPrint(x))
 print(preorderPrint(x))
