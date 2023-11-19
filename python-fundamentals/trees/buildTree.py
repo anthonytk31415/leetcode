@@ -68,7 +68,8 @@ def preorderPrint(node):
             queue.append(cur.right)
     return res
 
-def postorder
+def postorder(node):
+    return 
 
 
 print(inorderPrint(x))
