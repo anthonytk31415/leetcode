@@ -23,13 +23,13 @@ def garbageCollection1(garbage, travel):
     return totalMinutes
 
 
-def garbageCollection(garbage, travel):
+# def garbageCollection(garbage, travel):
 
 
 
-garbage = ["G","P","GP","GG"]
-travel = [2,4,3]
-garbage = ["MMM","PGM","GP"]
-travel = [3,10]
+# garbage = ["G","P","GP","GG"]
+# travel = [2,4,3]
+# garbage = ["MMM","PGM","GP"]
+# travel = [3,10]
 
 print(garbageCollection(garbage, travel))
