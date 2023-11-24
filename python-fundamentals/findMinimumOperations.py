@@ -13,11 +13,11 @@ def findMinimumOperations(s1, s2, s3):
     if s1 == s2 == s3: 
         return operations
 
-    if s1[:2] != s2[:2] or s2[:2] != s3[:2]:
+    if s1[:1] != s2[:1] or s2[:1] != s3[:1]:
         return -1
 
     # stop when the i's are not equal
-    i = 2
+    i = 1
     while i < minLength:
         if not (s1[i] == s2[i] == s3[i]):
             break 

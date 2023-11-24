@@ -34,3 +34,8 @@ print(constrainedSubsetSum(nums, k))
 
 
 # print(sum([1, 4, 1, 12, 19, 3, 2]))
+
+from heapq import heappush, heappop
+
+heappush(arr, (1,2))
+heappop(arr)
