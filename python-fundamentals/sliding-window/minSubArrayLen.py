@@ -1,8 +1,8 @@
 from math import inf 
 
-# this is much easlier than shortest subarray because it doesnt have negatievs
-# approach this with the sliding window. 
-# create right and left pointers. left = 0. iterate across right with a for loop 
+# This is much easlier than shortest subarray because it doesnt have negatives.
+# Approach this with the sliding window. 
+# Create right and left pointers. left = 0. iterate across right with a for loop. 
 # I used prefixSum for O(1) eval criteria 
 # once the sum >= k: try to remove elementes from the left with a while loop. Once you violate the window, exit your loop. 
 
