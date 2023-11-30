@@ -1,43 +1,54 @@
 # trivial: if k == num of T or F's, then return len(answerKey)
-from itertools import groupby
+# from itertools import groupby
+
+#     charFreq = []
+#     curChar = answerKey[0]
+#     curFreq = 1
+#     for char in answerKey[1:]:
+#         if char == curChar: 
+#             curFreq += 1
+#         else: 
+#             charFreq.append([curChar, curFreq])
+#             curChar = char
+#             curFreq = 1
+#     charFreq.append([curChar, curFreq])
 
 
 def maxConsecutiveAnswers(answerKey, k):
-    charFreq = []
-    curChar = answerKey[0]
-    curFreq = 1
-    for char in answerKey[1:]:
-        if char == curChar: 
-            curFreq += 1
-        else: 
-            charFreq.append([curChar, curFreq])
-            curChar = char
-            curFreq = 1
-    charFreq.append([curChar, curFreq])
 
-    print(charFreq)
-    def sWindow(char, tokens):
-        left = 0
-        right = 0
-        counts = 0
-        while right < len(charFreq):
-            # if curChar == char then add it to counts 
-            if charFreq[right][0] == char: 
-                counts += charFreq[right][1]
-                r += 1
-            # decide if you can right -> if you have enough tokens, move it and take it
+    def slidingWindow(char, tokens):
+        left, counts, maxCount = 0, 0, 0
+        
+        for right in answerKey: 
+            if right != char: 
+                if tokens == 0: 
+                    while answerKey[left] == char: 
+                        left += 1
+                        counts -= 1
+                    if answerKey[left] != char:
+                        tokens += 1
+                        left += 1
+                        counts -=1
+                if tokens > 0: 
+                    tokens -= 1
+            # if we're not at char, we have already bought a token to take current; 
+            counts += 1
+            maxCount = max(maxCount, counts)
+        return maxCount
 
+    # print((slidingWindow("T", k), slidingWindow("F", k)))
+    return max(slidingWindow("T", k), slidingWindow("F", k))
+        
 
-    # do for both T and F
+from itertools import accumulate
+arr = [1,2,3,4,5]
+prefixSum = list(accumulate(arr))
+print(prefixSum)
 
-
-    # do a groupby 
-
-    # then how do you decide which elements to connect? 
-
-
-k = 4
-answerKey = "TTTFFTTTTFFFTTTFTTFFTTT"
+k = 2
+# answerKey = "TTFFTTF"
+# answerKey = "TTTFFTTTTFFFTTT"
+answerKey = "TTTFTTFFTTT"
 # charFreq = list(groupby(answerKey))[0][1]
 
 print(maxConsecutiveAnswers(answerKey, k))
