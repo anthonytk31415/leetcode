@@ -16,7 +16,7 @@
 # Time: O(nlogn)
 # Space: O(n)
 
-from bisect import bisect_left
+from bisect import bisect_left, bisect
 def findNumberOfLIS(nums):
     res = [[0]]
     for i in range(1, len(nums)): 
@@ -34,13 +34,18 @@ def findNumberOfLIS(nums):
             if i == 0: 
                 parent[res[i][j]] = 1
             else: 
-                parent[res[i][j]] = sum([parent[x] for x in res[i-1] if x < res[i][j] and nums[x] < nums[res[i][j]] ])
+                idx = bisect(res[i-1], -nums[res[i][j]], key = lambda x: -nums[x])
+                parent[res[i][j]] = sum([parent[x] for x in res[i-1][idx:] if x < res[i][j]])
 
     return sum([parent[x] for x in res[-1]])
 
 
+## you can modify this so when you build the parent, you can take the length of of the res[i-1] from the binary searched element onward. 
+
+
 # nums = [1,2,7,3,6,5]
-nums = [1,0,2,6,3,5,4]
+# nums = [1,0,2,6,3,5,4]
+nums = [1,2,4,3,5,4,7,2]
 # nums.sort()
 # print(nums)
 # idx = bisect_left(nums, 2)
