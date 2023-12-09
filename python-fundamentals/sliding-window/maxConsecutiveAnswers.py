@@ -44,6 +44,8 @@ from itertools import accumulate
 arr = [1,2,3,4,5]
 prefixSum = list(accumulate(arr))
 print(prefixSum)
+# >> [1, 3, 6, 10, 15]
+
 
 k = 2
 # answerKey = "TTFFTTF"

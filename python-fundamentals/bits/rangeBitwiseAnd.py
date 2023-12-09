@@ -120,11 +120,10 @@ def crudeOps1(a, b):
     rightBL = b.bit_length()
 
     for n in [leftBL - 1, leftBL, rightBL-1, rightBL]:
-        if left < 2**n < right: 
+        if a < 2**n < b: 
             return 0
 
     n = (a & -a).bit_length() - 1
-    print(n, bin(a))
     cur = a
     while cur + 2**n < b:  
         cur = int(cur & (cur + 2**n))

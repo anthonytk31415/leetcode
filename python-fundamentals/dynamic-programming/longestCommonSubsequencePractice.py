@@ -1,3 +1,5 @@
+# the trick here i
+
 def longestCommonSubsequencePractice(word1, word2):
 
     dp  = [[0 for _ in range(len(word2))] for _ in range(len(word1))]
