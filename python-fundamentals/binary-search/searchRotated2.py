@@ -4,23 +4,41 @@
     # then divide the interval in two
     # then binary searc for num in both intervals
 
-def findMax(left, right):
-    if left == right: 
-        return left
-    if right - left == 1: 
-        if nums[left] > nums[right]:
-            return left
-        else: return right
-
-    mid = (left + right)//2
-    if nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]: return mid
-
-    leftSide = findMax(left, mid - 1)
-    rightSide = findMax(mid + 1, right)
-    return max(leftSide, rightSide)    
 
 def search(nums):
+    left = 0
+    right = len(nums) - 1
+    while left <= right: 
 
-    return 
+        mid = (left + right) // 2
+        while left < mid and nums[left] == nums[mid]:
+            left += 1
+        if nums[mid] == target:
+            return True
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target <= nums[mid]: 
+                right = mid - 1
+            else: 
+                left = mid + 1
 
-nums = [1,2,3,4]
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else: 
+                right = mid - 1
+
+    return False
+
+
+nums = [4,4,4,5,4]
+target = 5
+
+# nums = [8, 9, 10, 10, 11,0,1,2,3,3,3,3,3,4,4,4,4,4,5,6]
+# target = -5
+
+# nums = [2,2,2,0,0,1]
+# target = 0
+# nums = [1,0]
+# target = 0
+
+print(search(nums))
