@@ -11,6 +11,7 @@
 from collections import Counter
 
 def checkInclusion(s1, s2):
+    if len(s1) > len(s2) : return False
     s1Tracker = Counter(s1)
     inS1 = Counter()
     notInS1 = Counter()
@@ -25,7 +26,6 @@ def checkInclusion(s1, s2):
     if not s1Tracker: 
         return True
 
-    print(s1Tracker, inS1, notInS1)
     for i in range (len(s1), len(s2)):
         left = i - len(s1)
         if s2[left] in notInS1: 

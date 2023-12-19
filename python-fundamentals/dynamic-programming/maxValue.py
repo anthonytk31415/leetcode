@@ -71,6 +71,16 @@ def maxValue(events, k):
 import bisect 
 
 # and then, here comes the king of elegence: Lee
+
+# you really should look at the structure of some of Lee's Knapsack. So smooth
+
+# So the concept is: dp represents the prior k's (i.e. k-1) iteration of max value at end time. 
+# We sort events by end time and iterate through the events: s, e, v
+# For each event, we find the max prior value at end time by bisect - 1 
+# (the -1 because when a meeting ends, we cant immediately start another one).
+# We only append a new end time to our current dp = dp2 if the value increases. That way, 
+# the end of the dp array always contains the max value at end time. 
+
 def maxValue(A, K):
     A.sort(key=lambda sev: sev[1])
     dp, dp2 = [[0, 0]], [[0, 0]]

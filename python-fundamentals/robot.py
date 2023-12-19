@@ -26,7 +26,7 @@ class Robot:
         if self.xMax + 1 <= self.pos <= self.xMax + self.yMax: return "North"
         if self.xMax + self.yMax + 1 <= self.pos <= 2*self.xMax + self.yMax: return "West"
         if 2*self.xMax + self.yMax + 1 <= self.pos <= 2*(self.xMax + self.yMax): return "South"
-
+        if self.pos == 0: return "South"
     
 r = Robot(20,14)
 r.step(32)
