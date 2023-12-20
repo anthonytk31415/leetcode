@@ -11,7 +11,7 @@ def imageSmoother(img):
 
     res = [[0 for _ in img[0]] for _ in img ]
     for i in range(len(img)):
-        for j in range(len(img)):
+        for j in range(len(img[0])):
             res[i][j] = cellSmoother(i, j)
     
     return res
