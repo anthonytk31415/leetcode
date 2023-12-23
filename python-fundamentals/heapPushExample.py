@@ -1,6 +1,5 @@
 from heapq import heappush, heappop
 
-
 arr = []
 heappush(arr, 3)
 heappush(arr, 6)

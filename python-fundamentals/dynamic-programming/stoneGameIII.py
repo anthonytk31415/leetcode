@@ -1,7 +1,8 @@
-import numpy as np
 from math import inf 
 
 def stoneGameIII(stoneValue):
+    import numpy as np
+
     stoneValue = stoneValue[::-1]
     memo = [None]*len(stoneValue)
 
@@ -12,13 +13,13 @@ def stoneGameIII(stoneValue):
         else: 
             maxPoints = np.array([-inf,-inf])
             for j in range(1, 4):
-                print(i, j)
+                # print(i, j)
                 if i - j + 1< 0: break  
                 x = memo[i-j][::-1] if i - j >= 0 else 0
                 ySum = sum(stoneValue[i-j+1:i+1])
                 y = np.array([ySum, 0])
 
-                print("x: ", x, "y:", y, "ySum", ySum)
+                # print("x: ", x, "y:", y, "ySum", ySum)
                 curRes = x + y
                 if curRes[0] > maxPoints[0]:
                     maxPoints = curRes 
@@ -29,8 +30,8 @@ def stoneGameIII(stoneValue):
     for i in range(len(stoneValue)):
         f(i)
 
-    print(memo)
-    print(memo[-1])
+    # print(memo, memo[-1])
+    # print(memo[-1])
     if memo[-1][0] > memo[-1][1]: return "Alice"
     if memo[-1][0] == memo[-1][1]: return "Tie"
     else: return "Bob"
