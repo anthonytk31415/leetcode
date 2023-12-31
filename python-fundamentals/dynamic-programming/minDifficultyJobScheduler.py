@@ -1,42 +1,77 @@
 from math import inf
-# i get a TLE. Why? 
+# i get a TLE. Why? This giant mess below is a O(d*n^2) implementation and unneeded. 
+
+# def minDifficulty(jobDifficulty, d):
+#     n = len(jobDifficulty)
+#     if n < d: return - 1
+#     if d == 1: return max(jobDifficulty)
+
+#     memo = {}       
+#     def f(d, i, j):
+#         if (d,i,j) in memo: return memo[(d,i,j)]
+#         res = inf
+#         if d == 1: 
+#             res =  max(jobDifficulty[i:j+1])
+#         else:
+#             for w in range(i, j+1):
+#                 # condition: of width >= d-1 and bounds are good:
+#                 if j - (w+1) + 1 >= d-1 and w+1 <= j: 
+#                     curMin = f(1, i, w) + f(d-1, w+1, j)
+#                     res = min(curMin, res)
+#                 else: break 
+#             for w in range(i, j+1):
+#                 if w + -i + 1 >= d-1 and w+1 <= j: 
+#                     curMin = f(d-1, i, w) + f(1, w+1, j)
+#                     res = min(curMin, res)
+#                 else: break
+#             if res == inf: return 
+#         memo[(d,i,j)] = res
+#         return res
+
+#     for k in range(1, d):
+#         for i in range(n):
+#             for j in range(i+1, n):
+#                 if j - 1 + 1 >= k: f(k,i,j)
+#     res = f(d, 0, n-1)
+#     return res
 
 def minDifficulty(jobDifficulty, d):
-    n = len(jobDifficulty)
+    arr = jobDifficulty
+    n = len(arr)
     if n < d: return - 1
-    if d == 1: return max(jobDifficulty)
+    if d == 1: return max(arr)
+    dpPrev, dpCur, d1Memo = [-inf]*n, [-inf]*n, {}
 
-    memo = {}       
-    def f(d, i, j):
-        if (d,i,j) in memo: return memo[(d,i,j)]
-        res = inf
-        if d == 1: 
-            res =  max(jobDifficulty[i:j+1])
-        else:
-            for w in range(i, j+1):
-                # condition: of width >= d-1 and bounds are good:
-                if j - (w+1) + 1 >= d-1 and w+1 <= j: 
-                    curMin = f(1, i, w) + f(d-1, w+1, j)
-                    res = min(curMin, res)
-                else: break 
-            for w in range(i, j+1):
-                if w + -i + 1 >= d-1 and w+1 <= j: 
-                    curMin = f(d-1, i, w) + f(1, w+1, j)
-                    res = min(curMin, res)
-                else: break
-            if res == inf: return 
-        memo[(d,i,j)] = res
+    def d1(i,j):
+        if (i,j) in d1Memo: return d1Memo[(i,j)]
+        res = max(arr[i:j+1])
+        d1Memo[(i,j)] = res
         return res
 
-    for k in range(1, d):
-        for i in range(n):
-            for j in range(i+1, n):
-                if j - 1 + 1 >= k: f(k,i,j)
-    res = f(d, 0, n-1)
-    return res
+    for i in range(n):
+        for j in range(i, n):
+            cur = d1(i,j)
+            if j == n-1:
+                dpPrev[i] = cur
 
-# jobDifficulty = [5,7,2,6,3,1,9,8]
-# d = 4
+    def dfs(k, i):
+        res = inf
+        for j in range(i, len(arr)):
+            if n-1 - (j+1) + 1 >= k-1 and j+1 < n: 
+                curRes = d1(i, j) + dpPrev[j+1]
+                res = min(res, curRes)
+        dpCur[i] = res
+        return res
+
+    for k in range(2, d):
+        for i in range(n):
+            dfs(k, i)
+        dpPrev, dpCur = dpCur, [-inf]*n
+
+    return dfs(d, 0)
+
+jobDifficulty = [5,7,2,6,3,1,9,8]
+d = 4
 
 
 # jobDifficulty = [6,5,4,3,2,1]
