@@ -9,7 +9,8 @@ def sumNumbers(root):
         for child in [node.left, node.right]: 
             if child: dfs(child, curRes*10)
     
-    return dfs(root, 0)
+    dfs(root, 0)
+    return res[0]
 
 
 x = None
