@@ -1,4 +1,4 @@
-from random import randInt
+from random import randint
 
 class RandomizedSet:
 
@@ -22,16 +22,27 @@ class RandomizedSet:
     # replace the largest index with removed. 
     def remove(self, val: int) -> bool:
         if val in self.tracker:
+            if self.curIdx == 1:
+                self.curIdx = 0             
+                self.tracker = {}
+                self.idx = {}
+            else: 
+                idxToSwap = self.tracker[val]
+                valToSwap = self.idx[self.curIdx - 1]
+                
+                self.tracker[valToSwap] = idxToSwap
+                self.idx[idxToSwap] = valToSwap
 
+                del self.tracker[val]
+                del self.idx[self.curIdx - 1]
 
-
-
+                self.curIdx -= 1
             return True
         else: 
             return False
 
     def getRandom(self) -> int:
-        randIdx = randInt(0, self.curIdx - 1); 
+        randIdx = randint(0, self.curIdx - 1); 
         return self.idx[randIdx]
 
 

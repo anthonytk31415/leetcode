@@ -1,5 +1,7 @@
 from collections import Counter, defaultdict
 
+# hash table implementation
+
 def closeStrings(word1, word2):
     # char1, char2 = set(), set()
     w1, w2 = Counter(word1), Counter(word2)
@@ -12,7 +14,7 @@ def closeStrings(word1, word2):
         charFreq = charFreqs[i]
         for char in w:
             charFreq[w[char]]+= 1
-    print(set(w1.keys()), set(w2.keys()))
+    # print(set(w1.keys()), set(w2.keys()))
 
     if w1.keys() != w2.keys(): return False
     for num in charFreq1.keys():
