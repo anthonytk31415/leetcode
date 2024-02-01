@@ -21,6 +21,9 @@ def findIntegers1(n):
             y = y >> 1
     return  n + 1 - res 
 
+
+
+
 # this is O(n); too slow
 def findIntegers(n):
     res = 0
