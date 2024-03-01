@@ -21,7 +21,7 @@ def waysToSplit(nums):
         while minLeft - 1 > 1 and sumNums(0, minLeft - 1 - 1) <= sumNums(minLeft-1, right - 1) <= rightSum:
             minLeft -= 1
 
-        if 
+        # if 
             res += maxLeft - minLeft + 1
     return res % (10**9 + 7)
 
