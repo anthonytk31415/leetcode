@@ -1,0 +1,2 @@
+def removeNthFromEnd(head, n):
+    
