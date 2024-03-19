@@ -32,9 +32,6 @@ def leastInterval(tasks, n):
             if numTask > 0: 
                 heappush(coolDown, (curDay + n + 1, task, numTask))
 
-
-
-    
     return curDay
 
 tasks = ["A","A","A","B","B","B"]
